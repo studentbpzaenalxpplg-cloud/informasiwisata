@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesona Wisata Kendal</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f8f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    background: #176b45;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    animation: muncul 1s ease;
+}
+
+header h1 {
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+/* NAVBAR */
+nav {
+    background: #105637;
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #b8e6c9;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 15px;
+}
+
+h2 {
+    text-align: center;
+    color: #176b45;
+    margin-bottom: 25px;
+}
+
+/* DESTINASI */
+.destinasi {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #0002;
+    transition: 0.4s;
+    animation: naik 0.8s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px #0003;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img {
+    transform: scale(1.08);
+}
+
+.card-content {
+    padding: 17px;
+}
+
+.card h3 {
+    color: #176b45;
+    margin-bottom: 10px;
+}
+
+.harga {
+    font-weight: bold;
+    color: #176b45;
+    margin: 10px 0;
+}
+
+/* TOMBOL */
+button {
+    background: #176b45;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #105637;
+    transform: scale(1.03);
+}
+
+/* FORM PEMESANAN */
+.pemesanan {
+    background: white;
+    max-width: 550px;
+    margin: 35px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #0002;
+    animation: naik 1s ease;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #176b45;
+    box-shadow: 0 0 5px #176b4555;
+}
+
+/* TOTAL HARGA */
+.total {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e5f5eb;
+    color: #176b45;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+/* HASIL PESANAN */
+#hasilPesanan {
+    display: none;
+    background: #e5f5eb;
+    border: 2px solid #176b45;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+    color: #176b45;
+    animation: naik 0.7s ease;
+}
+
+#hasilPesanan h2 {
+    color: #176b45;
+}
+
+#hasilPesanan p {
+    margin: 8px 0;
+    border-bottom: 1px solid #c4e5d0;
+    padding: 5px 0;
+}
+
+.status {
+    background: #176b45;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 7px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#hasilPesanan button {
+    margin-top: 15px;
+}
+
+/* FOOTER */
+footer {
+    background: #105637;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* ANIMASI */
+@keyframes muncul {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes naik {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE HP */
+@media(max-width: 600px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+
+    .destinasi {
+        grid-template-columns: 1fr;
+    }
+
+    .pemesanan {
+        padding: 18px;
+    }
+}
+
+/* CETAK BUKTI PESANAN */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #hasilPesanan,
+    #hasilPesanan * {
+        visibility: visible;
+    }
+
+    #hasilPesanan {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    #hasilPesanan button {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h3>✨ Wonderful Kendal</h3>
+    <h1>Pesona Wisata Kendal</h1>
+    <p>
+        Jelajahi keindahan alam, pesona pantai eksotis,
+        dan destinasi rekreasi terbaik di Kabupaten Kendal,
+        Jawa Tengah.
+    </p>
+</header>
+
+<!-- NAVBAR -->
+<nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#destinasi">Destinasi</a>
+    <a href="#pesan">Pesan Tiket</a>
+</nav>
+
+<!-- BERANDA -->
+<section class="container" id="beranda">
+    <h2>Selamat Datang di Pesona Wisata Kendal</h2>
+
+    <p style="text-align:center">
+        Temukan destinasi wisata menarik dan pesan tiket
+        perjalananmu dengan mudah.
+    </p>
+</section>
+
+<!-- DESTINASI -->
+<section class="container" id="destinasi">
+
+<h2>Destinasi Populer</h2>
+
+<div class="destinasi">
+
+    <!-- CURUG SEWU -->
+    <div class="card">
+        <img src="images/curug-sewu.jpg" alt="Curug Sewu">
+
+        <div class="card-content">
+            <h3>Curug Sewu</h3>
+            <p>📍 Patean</p>
+
+            <p>
+                Air terjun bertingkat tiga dengan panorama
+                alam asri dan sejuk.
+            </p>
+
+            <p class="harga">Harga Tiket Rp10.000</p>
+
+            <button onclick="pilihWisata('Curug Sewu')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+    <!-- KEBUN TEH MEDINI -->
+    <div class="card">
+        <img src="images/kebun-teh-medini.jpg"
+             alt="Kebun Teh Medini">
+
+        <div class="card-content">
+            <h3>Kebun Teh Medini</h3>
+            <p>📍 Limbangan</p>
+
+            <p>
+                Hamparan perkebunan teh hijau dengan
+                udara pegunungan yang segar.
+            </p>
+
+            <p class="harga">Harga Tiket Rp5.000</p>
+
+            <button onclick="pilihWisata('Kebun Teh Medini')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+    <!-- PANTAI NGEBOOM -->
+    <div class="card">
+        <img src="images/pantai-ngeboom.jpg"
+             alt="Pantai Ngeboom">
+
+        <div class="card-content">
+            <h3>Pantai Ngeboom (Marine Park)</h3>
+            <p>📍 Patebon</p>
+
+            <p>
+                Destinasi pantai favorit dengan pemandangan
+                laut dan matahari terbenam.
+            </p>
+
+            <p class="harga">Harga Tiket Rp10.000</p>
+
+            <button onclick="pilihWisata('Pantai Ngeboom')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+    <!-- RIVER WALK BOJA -->
+    <div class="card">
+        <img src="images/river-walk-boja.jpg"
+             alt="River Walk Boja">
+
+        <div class="card-content">
+            <h3>River Walk Boja</h3>
+            <p>📍 Boja</p>
+
+            <p>
+                Wisata keluarga dengan waterpark, mini zoo,
+                dan spot foto menarik.
+            </p>
+
+            <p class="harga">Harga Tiket Rp25.000</p>
+
+            <button onclick="pilihWisata('River Walk Boja')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<!-- FORM PEMESANAN -->
+<section class="container" id="pesan">
+
+<div class="pemesanan">
+
+    <h2>🎟️ Pesan Tiket Wisata</h2>
+
+    <form id="formTiket">
+
+        <label>Nama Pemesan</label>
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama"
+            required
+        >
+
+        <label>Pilih Destinasi</label>
+        <select id="wisata" onchange="hitungTotal()">
+            <option value="10000">Curug Sewu</option>
+            <option value="5000">Kebun Teh Medini</option>
+            <option value="10000">Pantai Ngeboom</option>
+            <option value="25000">River Walk Boja</option>
+        </select>
+
+        <label>Jumlah Tiket</label>
+        <input
+            type="number"
+            id="jumlah"
+            value="1"
+            min="1"
+            required
+            oninput="hitungTotal()"
+        >
+
+        <label>Tanggal Kunjungan</label>
+        <input
+            type="date"
+            id="tanggal"
+            required
+        >
+
+        <div class="total">
+            Total Harga:
+            <div id="total">Rp10.000</div>
+        </div>
+
+        <button type="submit">
+            Selesaikan Pesanan
+        </button>
+
+    </form>
+
+    <!-- BUKTI PESANAN -->
+    <div id="hasilPesanan"></div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Pesona Wisata Kendal</p>
+    <p>Jelajahi Keindahan Wisata Kabupaten Kendal</p>
+</footer>
+
+<script>
+
+// MEMILIH DESTINASI
+/**
+ * @param {string} nama
+ */
+function pilihWisata(nama) {
+
+    let select = document.getElementById("wisata");
+
+    for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text === nama) {
+            select.selectedIndex = i;
+            break;
+        }
+    }
+
+    hitungTotal();
+
+    document.getElementById("pesan")
+        .scrollIntoView({behavior: "smooth"});
+}
+
+
+// MENGHITUNG TOTAL HARGA
+function hitungTotal() {
+
+    let harga = Number(
+        document.getElementById("wisata").value
+    );
+
+    let jumlah = Number(
+        document.getElementById("jumlah").value
+    );
+
+    let total = harga * jumlah;
+
+    document.getElementById("total").innerText =
+        "Rp" + total.toLocaleString("id-ID");
+}
+
+
+// PROSES PEMESANAN
+document.getElementById("formTiket")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let nama = document.getElementById("nama").value.trim();
+
+    let select = document.getElementById("wisata");
+
+    let wisata = select.options[
+        select.selectedIndex
+    ].text;
+
+    let jumlah = Number(
+        document.getElementById("jumlah").value
+    );
+
+    let tanggal = document.getElementById("tanggal").value;
+
+    if (!nama || jumlah < 1 || !tanggal) {
+        alert("Mohon lengkapi data pemesanan!");
+        return;
+    }
+
+    let harga = Number(select.value);
+    let total = harga * jumlah;
+
+    // MEMBUAT KODE BOOKING
+    let kode = "KDL" +
+        Date.now().toString().slice(-8);
+
+    // MENAMPILKAN BUKTI PESANAN
+    document.getElementById("hasilPesanan").innerHTML = `
+
+        <h2>🎉 PESANAN SELESAI!</h2>
+
+        <div class="status">
+            ✅ STATUS: PESANAN SELESAI
+        </div>
+
+        <p><b>Kode Booking:</b> ${kode}</p>
+
+        <p><b>Nama Pemesan:</b> ${nama}</p>
+
+        <p><b>Destinasi:</b> ${wisata}</p>
+
+        <p><b>Jumlah Tiket:</b> ${jumlah}</p>
+
+        <p><b>Tanggal Kunjungan:</b> ${tanggal}</p>
+
+        <p><b>Harga Tiket:</b>
+        Rp${harga.toLocaleString("id-ID")}</p>
+
+        <p><b>Total Harga:</b>
+        Rp${total.toLocaleString("id-ID")}</p>
+
+        <h3 style="text-align:center; margin-top:15px;">
+            Terima kasih telah memesan tiket!
+        </h3>
+
+        <button type="button" onclick="window.print()">
+            Cetak Bukti Pesanan
+        </button>
+    `;
+
+    document.getElementById("hasilPesanan").style.display = "block";
+
+    // MENGOSONGKAN FORM SETELAH PESANAN
+    document.getElementById("formTiket").reset();
+
+    hitungTotal();
+
+    // MENAMPILKAN HASIL PESANAN
+    document.getElementById("hasilPesanan")
+        .scrollIntoView({behavior: "smooth"});
+
+});
+
+
+// MENAMPILKAN HARGA AWAL
+hitungTotal();
+
+</script>
+
+</body>
+</html>
